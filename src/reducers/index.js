@@ -1,10 +1,10 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL,ADD_SMURF} from '../actions/index';
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL,ADD_SMURF,SET_ERROR} from '../actions/index';
 
 
 const initialState = {
     smurfs: [],
     loading: false,
-    error: ''
+    error: 'There is missing information',
   };
 
 const reducer = (state = initialState, action)=>{
@@ -22,6 +22,7 @@ const reducer = (state = initialState, action)=>{
             ...state,
             isLoading: false,
             error: '',
+
             smurfs: action.payload
         });
 
@@ -40,6 +41,11 @@ const reducer = (state = initialState, action)=>{
             isLoading : false,
             error:''
 
+        });
+        case("SET_ERROR"):
+        return({
+            ...state,
+            error: action.payload
         });
         default:
             return state;
